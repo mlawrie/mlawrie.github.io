@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Michael Lawrie</title>
+  <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'/>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+  <style type="text/css">
+    h1, h2, p, body {
+      font-family: 'Montserrat', sans-serif;
+      text-align: center;
+      color: #333;
+      line-height: 1em;
+      padding: 0;
+      margin: 0
+    }
+
+    body {
+      padding: 0 15px;
+    }
+
+    h1 {
+      margin: 0 0 5px;
+    }
+
+    h2 {
+      margin: 5px 0;
+    }
+
+    p {
+      font-size: 15px;
+      margin: 15px 0;
+    }
+
+    a {
+      margin: 0 1px;
+      display: inline-block;
+      background: #eee;
+      padding: 7px 10px;
+      text-decoration: none;
+      color: #00aef0;
+      transition: all 0.1s ease-in-out;
+      border-radius: 2px;
+    }
+
+    a:hover {
+      color: #fff;
+      background: #00aef0;
+    }
+
+  </style>
+  <script type="text/javascript">
+    var viewWidthUnits = function(value) {
+      return (value * $(window).width() / 100.0);
+    };
+
+    var layoutPageByViewWidth = function() {
+      $('h1').css({
+        fontSize: viewWidthUnits(10),
+        marginTop: viewWidthUnits(15)
+      });
+      $('h2').css({
+        fontSize: viewWidthUnits(3.15)
+      });
+    }
+    $(layoutPageByViewWidth);
+    $(window).resize(layoutPageByViewWidth);
+  </script>
+</head>
+<body>
+  <h1>Michael Lawrie</h1>
+  <h2>Software developer, designer, general creative</h2>
+  <p>
+    <a href="https://ca.linkedin.com/in/mtlawrie">LinkedIn</a>
+    <a href="http://github.com/mlawrie">Github</a>
+  </p>
+</body>
+</html>
