@@ -1,19 +1,21 @@
 $desktopNavWidth: 300px;
 $navigationBackground: #28aadc;
 $phoneNavWidth: 240px;
+$toggleSize: 48px;
 .navigation-toggle {
-  $size: 48px;
+  
   $lineHeight: 4px;
 
   position: absolute;
   z-index: 10;
-  top: 15px;
-  left: 15px;
+  top: $verticalRhythm;
+  left: $verticalRhythm;
   background-color: $navigationBackground;
-  width: $size;
-  height: $size;
+  width: $toggleSize;
+  height: $toggleSize;
   font-size: 0;
-  transition: background 0.4s ease-in-out, left 0.4s ease-in-out;
+  border-radius: 0px;
+  transition: all 0.4s ease-in-out;
 
   &:focus {
     outline: none;
@@ -24,8 +26,8 @@ $phoneNavWidth: 240px;
     position: absolute;
     top: 50%;
     margin-top: $lineHeight * -0.5;
-    left: 10px;
-    right: 10px;
+    left: $verticalRhythm/2;
+    right: $verticalRhythm/2;
     height: $lineHeight;
     background: white;
     transition: transform 0.3s;
@@ -39,22 +41,22 @@ $phoneNavWidth: 240px;
     height: $lineHeight;
     background-color: #fff;
     content: "";
+    transition: all 0.4s ease-in-out;
   }
 
   span::before {
-    top: -10px;
+    top: -$verticalRhythm/2;
     transform-origin: top right;
-    transition: transform 0.4s ease-in-out, width 0.4s ease-in-out, top 0.4s ease-in-out;
   }
 
   span::after {
-    bottom: -10px;
+    bottom: -$verticalRhythm/2;
     transform-origin: bottom right;
-    transition: transform 0.4s ease-in-out, width 0.4s ease-in-out, bottom 0.4s ease-in-out;
   }
 
   &.-active {
-    left: $desktopNavWidth + 15px;
+    left: $desktopNavWidth + 20px;
+    border-radius: $toggleSize/2;
 
     span {
       transform: rotate(180deg);
@@ -76,7 +78,7 @@ $phoneNavWidth: 240px;
 
 @include phone() {
   .navigation-toggle.-active {
-    left: $phoneNavWidth + 15px;
+    left: $phoneNavWidth + $verticalRhythm;
   }
 }
 
@@ -86,7 +88,7 @@ $phoneNavWidth: 240px;
   left: 0;
   bottom: 0;
   width: $desktopNavWidth;
-  background: #000;
+  background: #333;
   left: -$desktopNavWidth;
   transition: left 0.4s ease-in-out;
 }
@@ -121,40 +123,60 @@ $phoneNavWidth: 240px;
 }
 
 
-$navLinkColor: #a5e6ff;
+$navLinkHighlight: #a5e6ff;
+$navLinkColor: #00a4e3;
 
 .navigation-menu__heading {
   color: #eee;
-  margin: 20px;
+  margin: $verticalRhythm;
 
-  font-size: 18px;
-  line-height: 24px;
+  font-size: 16px;
+  line-height: 25px;
 
   > a {
     color: $navLinkColor;
     text-decoration: none;
     transition: color 0.2s ease-in-out; 
     &:hover {
-      color: #00a4e3;
+      color: $navLinkHighlight;
     }
   }
 }
 
 .navigation-menu__item {
   color: $navLinkColor;
-  border-top: 1px solid #333;
-  border-bottom: 1px solid #333;
-  height: 40px;
+  border-top: 1px solid #444;
+  border-bottom: 1px solid #444;
+  height: $verticalRhythm * 2;
   display: block;
   text-decoration: none;
   transition: all 0.2s ease-in-out; 
-  padding: 0px 20px;
-  line-height: 40px;
-  font-size: 18px;
+  padding: 0px $verticalRhythm;
+  line-height: $verticalRhythm * 2;
+  font-size: $verticalRhythm;
   font-family: 'Montserrat', sans-serif;
   &:hover {
     color: #00a4e3;
     background-color: #fff;
   }
   margin-bottom: -1px;
+}
+
+
+.site-title {
+  color: #999;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 120px;
+  line-height: $toggleSize;
+  font-size: $verticalRhythm;
+  font-family: 'Montserrat', sans-serif;
+
+  > a {
+    color: $navLinkColor;
+    text-decoration: none;
+    transition: color 0.2s ease-in-out; 
+    &:hover {
+      color: $navLinkHighlight;
+    }
+  }
 }

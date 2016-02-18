@@ -8,11 +8,12 @@
     {% include header.html %}
 
     <div class="page-content">
-      <header class="header">
-        <a class="site-title" href="{{ site.baseurl }}/">{{ site.title }}</a>
-      </header>
-
-      {{ content }}
+      <div class="page-content__wrapper">
+        <header class="site-title">
+          The blog of <a href="{{ site.baseurl }}/">{{ site.title }}</a>
+        </header>
+        {{ content }}
+      </div>
     </div>
 
     {% include footer.html %}

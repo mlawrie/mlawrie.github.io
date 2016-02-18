@@ -1,0 +1,23 @@
+.page-content__wrapper {
+  margin: 0 auto;
+  padding: $verticalRhythm $verticalRhythm * 6 0;
+  max-width: 720px;
+}
+
+.page-content__wrapper {
+  p {
+    font-size: $verticalRhythm;
+    line-height: $verticalRhythm * 1.5;
+  }
+}
+
+@media screen and (max-width: 599px) {
+  .page-content__wrapper {
+    margin: 0 auto;
+    padding: $verticalRhythm * 4 $verticalRhythm;
+    p {
+      font-size: 16px;
+      line-height: 25px;
+    }
+  }
+}
