@@ -1,0 +1,137 @@
+$desktopNavWidth: 300px;
+$navigationBackground: #28aadc;
+.navigation-toggle {
+  $size: 48px;
+  $lineHeight: 4px;
+
+  position: absolute;
+  z-index: 10;
+  top: 15px;
+  left: 15px;
+  background-color: $navigationBackground;
+  width: $size;
+  height: $size;
+  font-size: 0;
+  transition: background 0.4s ease-in-out, left 0.4s ease-in-out;
+
+  &:focus {
+    outline: none;
+  }
+
+  span {
+    display: block;
+    position: absolute;
+    top: 50%;
+    margin-top: $lineHeight * -0.5;
+    left: 10px;
+    right: 10px;
+    height: $lineHeight;
+    background: white;
+    transition: transform 0.3s;
+  }
+
+  span::before, span::after {
+    position: absolute;
+    display: block;
+    left: 0;
+    width: 100%;
+    height: $lineHeight;
+    background-color: #fff;
+    content: "";
+  }
+
+  span::before {
+    top: -10px;
+    transform-origin: top right;
+    transition: transform 0.4s, width 0.4s, top 0.4s;
+  }
+
+  span::after {
+    bottom: -10px;
+    transform-origin: bottom right;
+    transition: transform 0.4s, width 0.4s, bottom 0.4s;
+  }
+
+  &.-active {
+    left: $desktopNavWidth + 15px;
+
+    span {
+      transform: rotate(180deg);
+    }
+
+    span::before {
+      top: 0;
+      transform: translateX(16px) translateY(2px) rotate(45deg);
+      width: 50%;
+    }
+
+    span::after {
+      bottom: 0;
+      transform: translateX(16px) translateY(-2px) rotate(-45deg);
+      width: 50%;
+    }
+  }
+}
+
+.navigation-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: $desktopNavWidth;
+  background: #000;
+  left: -$desktopNavWidth;
+  transition: left 0.4s ease-in-out;
+}
+
+.navigation-toggle.-active + .navigation-menu {
+  left: 0;
+}
+
+.page-content {
+ transition: transform 0.4s ease-in-out; 
+}
+
+.navigation-toggle.-active ~ .page-content {
+  -webkit-transform: translateX($desktopNavWidth);
+  -ms-transform: translateX($desktopNavWidth);
+  transform: translateX($desktopNavWidth);
+}
+
+$navLinkColor: #a5e6ff;
+
+.navigation-menu__heading {
+  color: #eee;
+  margin: 20px;
+
+  font-size: 18px;
+  line-height: 24px;
+
+  > a {
+    color: $navLinkColor;
+    text-decoration: none;
+    transition: color 0.2s ease-in-out; 
+    &:hover {
+      color: #00a4e3;
+    }
+  }
+}
+
+.navigation-menu__item {
+  color: $navLinkColor;
+  border-top: 1px solid #333;
+  border-bottom: 1px solid #333;
+  height: 40px;
+  display: block;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out; 
+  padding: 0px 20px;
+  line-height: 40px;
+  font-size: 18px;
+  font-family: 'Montserrat', sans-serif;
+  &:hover {
+    color: #00a4e3;
+    background-color: #fff;
+  }
+  margin-bottom: -1px;
+}

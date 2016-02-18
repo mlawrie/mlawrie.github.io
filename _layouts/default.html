@@ -8,9 +8,11 @@
     {% include header.html %}
 
     <div class="page-content">
-      <div class="wrapper">
-        {{ content }}
-      </div>
+      <header class="header">
+        <a class="site-title" href="{{ site.baseurl }}/">{{ site.title }}</a>
+      </header>
+
+      {{ content }}
     </div>
 
     {% include footer.html %}
