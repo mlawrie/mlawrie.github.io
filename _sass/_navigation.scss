@@ -1,5 +1,6 @@
 $desktopNavWidth: 300px;
 $navigationBackground: #28aadc;
+$phoneNavWidth: 240px;
 .navigation-toggle {
   $size: 48px;
   $lineHeight: 4px;
@@ -43,13 +44,13 @@ $navigationBackground: #28aadc;
   span::before {
     top: -10px;
     transform-origin: top right;
-    transition: transform 0.4s, width 0.4s, top 0.4s;
+    transition: transform 0.4s ease-in-out, width 0.4s ease-in-out, top 0.4s ease-in-out;
   }
 
   span::after {
     bottom: -10px;
     transform-origin: bottom right;
-    transition: transform 0.4s, width 0.4s, bottom 0.4s;
+    transition: transform 0.4s ease-in-out, width 0.4s ease-in-out, bottom 0.4s ease-in-out;
   }
 
   &.-active {
@@ -73,6 +74,12 @@ $navigationBackground: #28aadc;
   }
 }
 
+@include phone() {
+  .navigation-toggle.-active {
+    left: $phoneNavWidth + 15px;
+  }
+}
+
 .navigation-menu {
   position: fixed;
   top: 0;
@@ -82,6 +89,13 @@ $navigationBackground: #28aadc;
   background: #000;
   left: -$desktopNavWidth;
   transition: left 0.4s ease-in-out;
+}
+
+@include phone() {
+  .navigation-menu {
+    width: $phoneNavWidth;
+    left: -$phoneNavWidth;  
+  }
 }
 
 .navigation-toggle.-active + .navigation-menu {
@@ -97,6 +111,15 @@ $navigationBackground: #28aadc;
   -ms-transform: translateX($desktopNavWidth);
   transform: translateX($desktopNavWidth);
 }
+
+@include phone() {
+  .navigation-toggle.-active ~ .page-content {
+    -webkit-transform: translateX($phoneNavWidth);
+    -ms-transform: translateX($phoneNavWidth);
+    transform: translateX($phoneNavWidth);
+  }
+}
+
 
 $navLinkColor: #a5e6ff;
 
