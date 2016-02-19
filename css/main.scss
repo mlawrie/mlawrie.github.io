@@ -4,6 +4,9 @@
 @charset "utf-8";
 
 $verticalRhythm: 20px;
+$navLinkHighlight: #a5e6ff;
+$navLinkColor: #00a4e3;
+
 
 @mixin phone() {
   @media screen and (max-width: 767px) {

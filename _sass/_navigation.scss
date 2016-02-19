@@ -129,9 +129,9 @@ $navLinkColor: #00a4e3;
 .navigation-menu__heading {
   color: #eee;
   margin: $verticalRhythm;
-
+  font-family: 'Montserrat', sans-serif;
   font-size: 16px;
-  line-height: 25px;
+  line-height: 23px;
 
   > a {
     color: $navLinkColor;
@@ -165,7 +165,6 @@ $navLinkColor: #00a4e3;
 
 .site-title {
   color: #999;
-  border-bottom: 1px solid #ddd;
   margin-bottom: 120px;
   line-height: $toggleSize;
   font-size: $verticalRhythm;
@@ -178,5 +177,11 @@ $navLinkColor: #00a4e3;
     &:hover {
       color: $navLinkHighlight;
     }
+  }
+}
+
+@media screen and (max-width: 599px) {
+  .site-title {
+    margin-bottom: 60px;
   }
 }

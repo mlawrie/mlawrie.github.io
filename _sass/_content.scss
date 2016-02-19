@@ -3,11 +3,41 @@
   padding: $verticalRhythm $verticalRhythm * 6 0;
   max-width: 720px;
 }
+.post {
+  color: #555;
 
-.page-content__wrapper {
   p {
     font-size: $verticalRhythm;
     line-height: $verticalRhythm * 1.5;
+    margin: $verticalRhythm 0;
+  }
+
+  .highlight {
+    padding: $verticalRhythm;
+    background: #333;
+  }
+
+  a {
+    color: $navLinkColor;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+    border-bottom: 2px solid $navLinkHighlight;
+    &:hover {
+      color: darken($navLinkColor, 20%);
+      border-bottom-width: 5px;
+    }
+  }
+
+  h1, h2, h3 {
+    font-family: 'Montserrat', sans-serif;
+    color: #666;
+  }
+
+  h1 {
+    font-size: $verticalRhythm * 1.5;
+    line-height: $verticalRhythm * 2;
+    margin: $verticalRhythm 0;
+    border-bottom: 1px solid #ddd;
   }
 }
 
