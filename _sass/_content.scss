@@ -3,7 +3,7 @@
   padding: $verticalRhythm $verticalRhythm * 6 0;
   max-width: 720px;
 }
-.post {
+.post-content {
   color: #555;
 
   p {
@@ -34,10 +34,7 @@
   }
 
   h1 {
-    font-size: $verticalRhythm * 1.5;
-    line-height: $verticalRhythm * 2;
-    margin: $verticalRhythm 0;
-    border-bottom: 1px solid #ddd;
+    
   }
 }
 
@@ -50,4 +47,36 @@
       line-height: 25px;
     }
   }
+}
+
+.post-title {
+  font-family: 'Montserrat', sans-serif;
+  color: #666;
+  font-size: $verticalRhythm * 1.5;
+  line-height: $verticalRhythm * 2;
+  margin: $verticalRhythm 0;
+  border-bottom: 1px solid #ddd;
+  position: relative;
+}
+
+.post-title__permalink {
+  color: $navLinkColor;
+  position: absolute;
+  right: 0;
+  bottom: 8px;
+  font-size: 12px;
+  line-height: 12px;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    color: darken($navLinkColor, 20%);
+  }
+}
+
+.post-meta {
+  font-family: 'Montserrat', sans-serif;
+  color: #666;
+  font-size: 16px;
+  line-height: $verticalRhythm;
+  margin: $verticalRhythm 0;
 }

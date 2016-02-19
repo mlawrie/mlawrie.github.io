@@ -2,6 +2,7 @@
 layout: post
 title:  "Hello World"
 date:   2016-02-18 16:36:24 -0600
+permalink: hello-world
 ---
 
 I have a blog now. There is no content. Yay!
