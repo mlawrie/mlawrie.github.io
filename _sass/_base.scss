@@ -55,3 +55,7 @@ body {
     font-feature-settings: "kern" 1;
     font-kerning: normal;
 }
+
+* {
+    -webkit-backface-visibility: hidden;
+}
