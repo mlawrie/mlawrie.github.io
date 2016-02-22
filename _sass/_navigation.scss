@@ -89,8 +89,11 @@ $toggleSize: 48px;
   bottom: 0;
   width: $desktopNavWidth;
   background: #333;
-  left: -$desktopNavWidth;
-  transition: left 0.4s ease-in-out;
+  -webkit-transform: translateX(-$desktopNavWidth);
+  -ms-transform: translateX(-$desktopNavWidth);
+  transform: translateX(-$desktopNavWidth);
+   -webkit-backface-visibility: hidden;
+  transition: transform 0.4s ease-in-out;
 }
 
 @include phone() {
@@ -101,11 +104,15 @@ $toggleSize: 48px;
 }
 
 .navigation-toggle.-active + .navigation-menu {
-  left: 0;
+  -webkit-transform: translateX(0);
+  -ms-transform: translateX(0);
+  transform: translateX(0);
 }
 
 .page-content {
  transition: transform 0.4s ease-in-out; 
+ transform: translateZ(0);
+ -webkit-backface-visibility: hidden;
 }
 
 .navigation-toggle.-active ~ .page-content {
