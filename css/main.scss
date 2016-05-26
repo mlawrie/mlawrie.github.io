@@ -7,12 +7,24 @@ $verticalRhythm: 20px;
 $navLinkHighlight: #a5e6ff;
 $navLinkColor: #00a4e3;
 
+@mixin smallPhone() {
+  @media screen and (max-width: 480px) {
+    @content;
+  }
+}
 
 @mixin phone() {
   @media screen and (max-width: 767px) {
     @content;
   }
 }
+
+@mixin tablet() {
+  @media screen and (max-width: 1024px) {
+    @content;
+  }
+}
+
 
 @import
   "base",

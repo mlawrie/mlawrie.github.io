@@ -74,6 +74,15 @@ $toggleSize: 48px;
       width: 50%;
     }
   }
+  
+  @include phone {
+    margin-left: $verticalRhythm;
+  }
+  
+  @include smallPhone {
+    margin-left: 0;
+  }
+
 }
 
 @include phone() {
@@ -184,10 +193,15 @@ $navLinkColor: #00a4e3;
       color: $navLinkHighlight;
     }
   }
-}
-
-@media screen and (max-width: 599px) {
-  .site-title {
+  
+  @include phone {
+    margin-left: $verticalRhythm * 3;
     margin-bottom: 60px;
   }
+  
+  @include smallPhone {
+    margin-left: 0;
+    margin-bottom: 40px;
+  }
+
 }

@@ -2,19 +2,44 @@
   margin: 0 auto;
   padding: $verticalRhythm $verticalRhythm * 6 0;
   max-width: 720px;
+
+  @include tablet {
+    margin: 0 auto;
+    padding: $verticalRhythm $verticalRhythm * 4 0;
+  }
+    
+  @include phone {
+    padding: $verticalRhythm $verticalRhythm * 2 0;
+  }
+  
+  @include smallPhone {
+    padding: $verticalRhythm * 4 $verticalRhythm;
+  }
+  
 }
 .post-content {
   color: #555;
 
   p {
-    font-size: $verticalRhythm;
+    font-size: $verticalRhythm - 1px;
     line-height: $verticalRhythm * 1.5;
     margin: $verticalRhythm 0;
+    
+    @include phone {
+      font-size: $verticalRhythm - 3px;
+      line-height: $verticalRhythm * 1.25;
+    }
+    
+    @include smallPhone {
+      font-size: $verticalRhythm - 6px;
+      line-height: $verticalRhythm * 1.25;
+    }
   }
 
   .highlight {
     padding: $verticalRhythm;
     background: #333;
+    overflow-x: auto;
   }
 
   a {
@@ -33,19 +58,22 @@
     color: #666;
   }
 
-  h1 {
-    
-  }
-}
-
-@media screen and (max-width: 599px) {
-  .page-content__wrapper {
-    margin: 0 auto;
-    padding: $verticalRhythm * 4 $verticalRhythm;
-    p {
-      font-size: 16px;
-      line-height: 25px;
+  h2 {
+    font-size: 20px;
+    @include phone {
+      font-size: 18px;
     }
+  }
+  
+  code.highlighter-rouge {
+    padding: 0px 5px;
+    font-family: 'Monaco', 'Courier New';
+    padding: 4px 5px;
+    font-size: 75%;
+    line-height: 20px;
+    color: #000;
+    border-radius: 3px;
+    background-color: #eee;
   }
 }
 
@@ -57,19 +85,30 @@
   margin: $verticalRhythm 0;
   border-bottom: 1px solid #ddd;
   position: relative;
+  
+  @include phone {
+    font-size: $verticalRhythm * 1.1;
+    line-height: $verticalRhythm * 1.5;
+    padding-bottom: 2px;
+  }
 }
 
 .post-title__permalink {
+  font-family: 'Montserrat', sans-serif;
+  display: block;
+  text-align: right;
   color: $navLinkColor;
-  position: absolute;
-  right: 0;
-  bottom: 8px;
   font-size: 12px;
+  margin: -10px 0 10px;
   line-height: 12px;
   text-decoration: none;
   transition: all 0.2s ease-in-out;
   &:hover {
     color: darken($navLinkColor, 20%);
+  }
+  
+  @include smallPhone {
+    font-size: 10px;
   }
 }
 

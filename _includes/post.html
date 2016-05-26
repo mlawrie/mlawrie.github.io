@@ -3,8 +3,8 @@
   <header class="post-header">
     <h1 class="post-title" itemprop="name headline">
       {{ page.title }}
-      <a class="post-title__permalink" href="{{page.url}}">permalink</a>
     </h1>
+    <a class="post-title__permalink" href="{{page.url}}">permalink</a>
     <p class="post-meta"><time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%b %-d, %Y" }}</time></p>
   </header>
 

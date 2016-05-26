@@ -8,10 +8,11 @@ $background:#383830;
 $grey:#999;
 $violet:#AE81FF;
 
-.highlight{
+.highlight {
+  
   font-family: 'Monaco', 'Courier New';
   margin: 20px 0;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 20px;
   background-color: $background;
   color:$original;
@@ -35,11 +36,14 @@ $violet:#AE81FF;
   .css .k,.nb,.kd,.n{
     color:$blue;
   }
-}
+  
+  @include phone {
+    font-size: 13px;
+    line-height: 18px;
+  }
 
-@media screen and (max-width: 599px) {
-  .highlight {
-    font-size: 12px;
-    line-height: 16px;
+  @include smallPhone {
+    font-size: 10px;
+    line-height: 14px;
   }
 }

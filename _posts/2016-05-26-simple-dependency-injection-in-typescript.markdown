@@ -86,6 +86,6 @@ Instead of using a global container to store dependencies, the consumer of the d
 
 When the application code runs, the injector does nothing and always returns the dependency.
 
-It relies on calling toString() on functions so it is not compatible with minification in your tests. I can't imagine why anyone would minify their tests, though. You can definitely minify your production code, though.
+It relies on calling `toString()` on functions so it is not compatible with minification in your tests. I can't imagine why anyone would minify their tests, though. You can definitely minify your production code, though.
 
 There is one caveat: You must declare your depenencies exactly the same way in tests as in your app code. This means you can't call something that you inject `foo` in tests and `Foo` in your app's code. Personally, I think this is a small price for the simplicity and scalability of this solution. 
