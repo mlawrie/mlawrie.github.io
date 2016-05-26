@@ -99,7 +99,6 @@ $toggleSize: 48px;
 @include phone() {
   .navigation-menu {
     width: $phoneNavWidth;
-    left: -$phoneNavWidth;  
   }
 }
 
@@ -110,9 +109,9 @@ $toggleSize: 48px;
 }
 
 .page-content {
- transition: transform 0.4s ease-in-out; 
- transform: translateZ(0);
- -webkit-backface-visibility: hidden;
+  transition: transform 0.4s ease-in-out; 
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
 }
 
 .navigation-toggle.-active ~ .page-content {
