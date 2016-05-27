@@ -35,6 +35,30 @@
       line-height: $verticalRhythm * 1.25;
     }
   }
+  
+  ol {
+    list-style-type: decimal;
+    color: #999;
+    padding-left: $verticalRhythm * 1;
+    font-size: $verticalRhythm - 1px;
+    line-height: $verticalRhythm * 1.5;
+    margin: $verticalRhythm 0;
+    
+    > li {
+      color: #555;
+      padding-left: $verticalRhythm * 0.25;
+    }
+    
+    @include phone {
+      font-size: $verticalRhythm - 3px;
+      line-height: $verticalRhythm * 1.25;
+    }
+    
+    @include smallPhone {
+      font-size: $verticalRhythm - 6px;
+      line-height: $verticalRhythm * 1.25;
+    }
+  }
 
   .highlight {
     padding: $verticalRhythm;

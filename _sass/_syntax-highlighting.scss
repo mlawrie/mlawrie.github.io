@@ -12,7 +12,7 @@ $violet:#AE81FF;
   
   font-family: 'Monaco', 'Courier New';
   margin: 20px 0;
-  font-size: 15px;
+  font-size: 14px;
   line-height: 20px;
   background-color: $background;
   color:$original;
@@ -37,8 +37,13 @@ $violet:#AE81FF;
     color:$blue;
   }
   
-  @include phone {
+  @include tablet {
     font-size: 13px;
+    line-height: 18px;
+  }
+  
+  @include phone {
+    font-size: 12px;
     line-height: 18px;
   }
 
