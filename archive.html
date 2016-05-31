@@ -1,0 +1,19 @@
+---
+layout: default
+title: Archive
+permalink: /archive/
+---
+
+<h1 class="post-title">Archive</h1>
+<ul>
+  {% for page in site.posts %}
+    <li>
+      <h2 class="archive-item" itemprop="name headline">
+        <a href="{{page.url}}"> 
+          {{ page.title }}
+        </a>
+        <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%b %-d, %Y" }}</time>
+      </h2>
+    </li>
+  {% endfor %}
+</ul>

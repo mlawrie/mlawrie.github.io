@@ -1,0 +1,28 @@
+.archive-item {
+  font-family: 'Montserrat', sans-serif;
+  color: #666;
+  font-size: $verticalRhythm;
+  line-height: $verticalRhythm * 1.5;
+  margin: $verticalRhythm 0;
+  
+  > a {
+    color: $navLinkColor;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+    border-bottom: 2px solid $navLinkHighlight;
+    &:hover {
+      color: darken($navLinkColor, 20%);
+      border-bottom-width: 5px;
+    }
+  }
+  
+  > time {
+    display: block;
+  }
+  
+  @include phone {
+    font-size: $verticalRhythm * 0.75;
+    line-height: $verticalRhythm * 1;
+  }
+
+}
