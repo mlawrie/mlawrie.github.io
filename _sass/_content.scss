@@ -31,7 +31,7 @@
     }
     
     @include smallPhone {
-      font-size: $verticalRhythm - 6px;
+      font-size: $verticalRhythm - 5px;
       line-height: $verticalRhythm * 1.25;
     }
   }
