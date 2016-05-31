@@ -1,5 +1,5 @@
 .archive-item {
-  font-family: 'Montserrat', sans-serif;
+  @include headingFont();
   color: #666;
   font-size: $verticalRhythm;
   line-height: $verticalRhythm * 1.5;
@@ -20,7 +20,7 @@
     display: block;
   }
   
-  @include phone {
+  @include smallPhone {
     font-size: $verticalRhythm * 0.75;
     line-height: $verticalRhythm * 1;
   }

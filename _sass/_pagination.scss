@@ -1,0 +1,31 @@
+.pagination {
+  position: relative;
+  height: $verticalRhythm;
+  margin: $verticalRhythm * 2 0;
+}
+.pagination__previous, .pagination__next {
+  display: inline-block;
+  
+  color: $navLinkColor;
+  font-size: 18px;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+  background: #eee;
+  padding: $verticalRhythm;
+  line-height: $verticalRhythm;
+  &:hover {
+    color: #fff;
+    background-color: $navLinkColor;
+  }
+  
+  @include smallPhone() {
+    font-size: 16px;
+    padding: $verticalRhythm * 0.5;
+  }
+}
+
+.pagination__next {
+  position: absolute;
+  top: 0;
+  right: 0;
+}

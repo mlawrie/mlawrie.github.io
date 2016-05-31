@@ -16,6 +16,7 @@ $toggleSize: 48px;
   font-size: 0;
   border-radius: 0px;
   transition: all 0.4s ease-in-out;
+  -webkit-backface-visibility: hidden;
 
   &:focus {
     outline: none;
@@ -121,6 +122,7 @@ $toggleSize: 48px;
   transition: transform 0.4s ease-in-out; 
   transform: translateZ(0);
   -webkit-backface-visibility: hidden;
+  margin-bottom: $verticalRhythm * 4;
 }
 
 .navigation-toggle.-active ~ .page-content {
@@ -144,7 +146,8 @@ $navLinkColor: #00a4e3;
 .navigation-menu__heading {
   color: #eee;
   margin: $verticalRhythm;
-  font-family: 'Montserrat', sans-serif;
+  @include headingFont();
+  
   font-size: 16px;
   line-height: 23px;
 
@@ -169,7 +172,7 @@ $navLinkColor: #00a4e3;
   padding: 0px $verticalRhythm;
   line-height: $verticalRhythm * 2;
   font-size: $verticalRhythm;
-  font-family: 'Montserrat', sans-serif;
+  @include headingFontBold();
   &:hover {
     color: #00a4e3;
     background-color: #fff;
@@ -183,7 +186,7 @@ $navLinkColor: #00a4e3;
   margin-bottom: 120px;
   line-height: $toggleSize;
   font-size: $verticalRhythm;
-  font-family: 'Montserrat', sans-serif;
+  @include headingFontBold();
 
   > a {
     color: $navLinkColor;

@@ -7,6 +7,15 @@ $verticalRhythm: 20px;
 $navLinkHighlight: #a5e6ff;
 $navLinkColor: #00a4e3;
 
+@mixin headingFont() {
+  font-family: 'Gentium Book Basic', serif;
+}
+
+@mixin headingFontBold() {
+  font-family: 'Gentium Book Basic', serif;
+  font-weight: 700;
+}
+
 @mixin smallPhone() {
   @media screen and (max-width: 480px) {
     @content;
@@ -31,5 +40,6 @@ $navLinkColor: #00a4e3;
   "syntax-highlighting",
   "navigation",
   "content",
-  "archive"
+  "archive",
+  "pagination"
   ;

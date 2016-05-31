@@ -1,4 +1,6 @@
 .page-content__wrapper {
+  font-family: 'Gentium Book Basic', serif;
+  
   margin: 0 auto;
   padding: $verticalRhythm $verticalRhythm * 6 0;
   max-width: 720px;
@@ -31,7 +33,7 @@
     }
     
     @include smallPhone {
-      font-size: $verticalRhythm - 5px;
+      font-size: $verticalRhythm - 4px;
       line-height: $verticalRhythm * 1.25;
     }
   }
@@ -78,12 +80,13 @@
   }
 
   h1, h2, h3 {
-    font-family: 'Montserrat', sans-serif;
+    @include headingFontBold();
     color: #666;
   }
 
   h2 {
     font-size: 20px;
+    margin-top: $verticalRhythm * 3;
     @include phone {
       font-size: 18px;
     }
@@ -92,6 +95,7 @@
   code.highlighter-rouge {
     padding: 0px 5px;
     font-family: 'Monaco', 'Courier New';
+    font-weight: bold;
     padding: 4px 5px;
     font-size: 75%;
     line-height: 20px;
@@ -102,7 +106,7 @@
 }
 
 .post-title {
-  font-family: 'Montserrat', sans-serif;
+  @include headingFontBold();
   color: #666;
   font-size: $verticalRhythm * 1.5;
   line-height: $verticalRhythm * 2;
@@ -110,21 +114,27 @@
   border-bottom: 1px solid #ddd;
   position: relative;
   
-  @include phone {
+  @include smallPhone {
     font-size: $verticalRhythm * 1.1;
     line-height: $verticalRhythm * 1.5;
     padding-bottom: 2px;
   }
 }
 
+.post-header {
+  position: relative;
+}
+
 .post-title__permalink {
-  font-family: 'Montserrat', sans-serif;
+  @include headingFont();
+  position: absolute;
+  right: 0;
+  bottom: -1px;
   display: block;
   text-align: right;
   color: $navLinkColor;
   font-size: 12px;
-  margin: -10px 0 10px;
-  line-height: 12px;
+  line-height: $verticalRhythm;
   text-decoration: none;
   transition: all 0.2s ease-in-out;
   &:hover {
@@ -133,13 +143,14 @@
   
   @include smallPhone {
     font-size: 10px;
+    bottom: -2px;
   }
 }
 
 .post-meta {
-  font-family: 'Montserrat', sans-serif;
+  @include headingFont();
   color: #666;
   font-size: 16px;
   line-height: $verticalRhythm;
-  margin: $verticalRhythm 0;
+  margin: $verticalRhythm * -0.5 0 $verticalRhythm;
 }
