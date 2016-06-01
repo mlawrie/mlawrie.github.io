@@ -72,10 +72,10 @@
     color: $navLinkColor;
     text-decoration: none;
     transition: all 0.2s ease-in-out;
-    border-bottom: 2px solid $navLinkHighlight;
+    border-bottom: 2px dotted $navLinkHighlight;
     &:hover {
       color: darken($navLinkColor, 20%);
-      border-bottom-width: 5px;
+      border-color: darken($navLinkHighlight, 20%);
     }
   }
 
