@@ -13,7 +13,7 @@ Redux is great. TypeScript is great. Redux isn't, at the outset, anywhere where 
 
 ## Part 1: Typesafe Actions
 
-I found this clever implementation for typescript actions on the redux github posted by XXX, I've modified it slightly. If you're not using TypeScript 1.9 (and you're probably not since at the time of writing it was unreleased), just remove the `readonly` modifiers.
+I found this clever implementation for typescript actions on a [redux github issue](https://github.com/reactjs/redux/issues/992) posted by [aikoven](https://github.com/aikoven), I've modified it slightly. If you're not using TypeScript 1.9 (and you're probably not since at the time of writing it was unreleased), just remove the `readonly` modifiers.
 
 {% highlight javascript %}
 //listItemsActions.ts
@@ -49,7 +49,7 @@ There's three things to notice here:
 
 First, through the `Action` interface, we define a typesafe way to access redux actions before we know what action we're dealing with. 
 
-Second, through the `isType<T>` function, we expose a typesafe way of accessing action payloads through use of a XXX type guard. It works by comparing the action type to the one which has been defined in the action creator. This is safe so long as the action types are globally unique. An example of how this function is used is included in part 2.
+Second, through the `isType<T>` function, we expose a typesafe way of accessing action payloads through use of a [type guard](https://github.com/Microsoft/TypeScript/wiki/What's-new-in-TypeScript#user-defined-type-guard-functions). It works by comparing the action type to the one which has been defined in the action creator. This is safe so long as the action types are globally unique. An example of how this function is used is included in part 2.
 
 Third, the action creator parameters themselves have defined types. This closes the loop and makes the entire action type safe. This is especially effective with `strictNullChecks` and `noImplicitAny` enabled in your TypeScript config!   
 
