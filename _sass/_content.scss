@@ -67,6 +67,10 @@
     background: #333;
     overflow-x: auto;
   }
+  
+  em {
+    font-weight: bold;
+  }
 
   a {
     color: $navLinkColor;
