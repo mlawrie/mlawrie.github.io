@@ -17,6 +17,7 @@
 			height: 100%;
 			width: 900px;
 			margin: 0 auto;
+			background: #fff;
 		}
 
 		main {		
@@ -26,7 +27,7 @@
 		header {
 			background: #f0f0f0;
 			color: #000;
-			padding: 30px 40px 40px;
+			padding: 30px 40px 30px 280px;
 			position: relative;
 		}
 		header h1 {
@@ -36,7 +37,7 @@
 			text-transform: uppercase;
 			font-family: 'Montserrat', sans-serif;
 			display: inline-block;
-			font-size: 38px;
+			font-size: 28px;
 			font-weight: 200;
 			margin-bottom: 5px;
 		}
@@ -60,17 +61,17 @@
 		.image-cropper {
 		    width: 220px;
 		    height: 220px;
-		    position: relative;
+		    position: absolute;
+		    top: 30px;
+		    left: 30px;
 		    overflow: hidden;
 		    border-radius: 50%;
-		    float: left;
-		    margin-right: 40px;
 		}
 
 		img {
 		    display: inline;
-		    margin: -35% auto;
-		    width: 110%;
+		    margin: -25% -13%;
+		    width: 130%;
 		    height: auto;
 		}
 
@@ -181,6 +182,7 @@
 		<header>
 			<h1>Michael Lawrie</h1>
 			<!-- <h2>Software Engineering<br/> Leader</h2> -->
+			<div class="image-cropper"><img src="me.jpg"/></div>
 			<ul>
 				<li>Expert in transforming massively complex systems and driving principles associated with technical excellence including evolutionary architecture, continuous delivery and developer experience</li>
 				<li>Adept navigator of organizational politics, crafter of tech strategies which resonate with the board and dev teams alike</li>
