@@ -27,8 +27,9 @@
 		header {
 			background: #f0f0f0;
 			color: #000;
-			padding: 30px 40px 30px 280px;
+			padding: 30px 40px 30px 210px;
 			position: relative;
+			min-height: calc(150px + 60px);
 		}
 		header h1 {
 			background: #FF1654;
@@ -59,8 +60,8 @@
 		}
 		
 		.image-cropper {
-		    width: 220px;
-		    height: 220px;
+		    width: 150px;
+		    height: 150px;
 		    position: absolute;
 		    top: 30px;
 		    left: 30px;
@@ -170,6 +171,22 @@
 			font-size: 16px;
 		}
 
+		a.factory-link {
+			color: #00A896;
+			font-weight: 700;
+			text-decoration: none;
+			border-bottom: 1px solid #00A896;
+			white-space: nowrap;
+		}
+		a.factory-link svg {
+			display: inline-block;
+			width: 0.85em;
+			height: 0.85em;
+			margin: 0 0 0 4px;
+			vertical-align: -0.06em;
+			fill: currentColor;
+		}
+
 		.page-break {
 			page-break-after: always; 
 			page-break-inside: avoid;
@@ -184,16 +201,26 @@
 			<!-- <h2>Software Engineering<br/> Leader</h2> -->
 			<div class="image-cropper"><img src="me.jpg"/></div>
 			<ul>
-				<li>Expert in transforming massively complex systems and driving principles associated with technical excellence including evolutionary architecture, continuous delivery and developer experience</li>
-				<li>Adept navigator of organizational politics, crafter of tech strategies which resonate with the board and dev teams alike</li>
-				<li>Dedicated servant leader and mentor who fosters a culture of collaboration and empowered teams</li>
+				<li>20 years shipping software at scale, 1 year exclusively with agents</li>
+				<li>14 years leading platform builds at Fortune 25 clients and global leaders</li>
+				<li>A career focused on collaboration, mentorship and direct customer engagement</li>
 			</ul>
 		</header>
 		<section>
 			<h2 class="category-heading">Experience</h2>
 			<article>
-					<h3>Executive technical principal</h3>
-					<h4>Thoughtworks <aside>2013 &gt; now</aside></h4>
+					<h3>Chief technical officer (seed stage)</h3>
+					<h4>Auctogon <aside>2026 &gt; now</aside></h4>
+					<ul>
+						<li>Built the <a class="factory-link" href="http://michaellawrie.com/auctogon-software-factory-09-04-26.html">software factory<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M35.521,41.288c-3.422,0-6.64-1.333-9.06-3.753c-1.106-1.106-1.106-2.9,0-4.006c1.106-1.106,2.9-1.106,4.006,0c1.35,1.35,3.145,2.093,5.054,2.093c1.909,0,3.704-0.743,5.054-2.094l7.538-7.538c2.787-2.787,2.787-7.321,0-10.108c-2.787-2.787-7.321-2.787-10.108,0l-3.227,3.227c-1.106,1.106-2.9,1.106-4.006,0c-1.106-1.106-1.106-2.9,0-4.006L34,11.877c4.996-4.996,13.124-4.995,18.12,0c4.996,4.996,4.996,13.124,0,18.12l-7.538,7.538C42.161,39.955,38.944,41.288,35.521,41.288z"/><path d="M20.94,55.869c-3.422,0-6.64-1.333-9.06-3.753c-4.996-4.996-4.996-13.124,0-18.12l7.538-7.538c4.996-4.995,13.124-4.995,18.12,0c1.106,1.106,1.106,2.9,0,4.006c-1.106,1.106-2.9,1.106-4.006,0c-2.787-2.787-7.321-2.787-10.108,0l-7.538,7.538c-2.787,2.787-2.787,7.321,0,10.108c1.35,1.35,3.145,2.094,5.054,2.094c1.909,0,3.704-0.743,5.054-2.093l3.227-3.227c1.106-1.106,2.9-1.106,4.006,0c1.106,1.106,1.106,2.9,0,4.006L30,52.117C27.58,54.536,24.363,55.869,20.94,55.869z"/></svg></a> and the product, shipping ~700k lines of to prod in 6 months with a team of three humans. Averaged 25 PRs merged per person per day.</li>
+						<li>Developed an eval framework for every change with ~40 deterministic checks, 6 domain-specialist code review agents, and 2 acceptance testing agents.</li>
+						<li>Defined the SDLC. Humans do 15 things and none is coding: specification, architecture, design, judgment. Everything else is deterministically automated, governed by specs, 80 path-scoped rules and 40 skills.</li>
+						<li>Engaged directly and frequently with Auctogon's first customers, guiding them through adoption and the bumps associated with using a totally new product.</li>
+					</ul>
+			</article>
+			<article>
+					<h3>Technical principal</h3>
+					<h4>ThoughtWorks <aside>2013 &gt; 2026</aside></h4>
 					<ul>
 						<li>Directed the technical approach on many client engagements, including:</li>
 						<ul>
@@ -201,14 +228,16 @@
 							<li>Development of new bidding and ERP systems handling $8B ARR for a global auction conglomerate</li>
 							<li>Modernized online ordering for a global fast food brand</li>
 						</ul>
+						<li>Led AI-first initiatives in the enterprise:</li>
+						<ul>
+							<li>Led implementation of ThoughtWorks' agentic framework, AI/works, at one of its first clients</li>	
+							<li>Developed an agentic design system for a Fortune 25 retailer</li>
+						</ul>
 						<li>Prior to engagement-level leadership, led multiple software engineering teams, including:</li>
 						<ul>
 							<li>Development of a major US airline's consumer mobile app serving ~50 million passengers annually</li>
-							<li>Frontend replatforming of a Fortune 25 retailer's sole online channel for thousands of physical stores</li>
+							<li>Frontend replatforming of a Fortune 25 retailer's online channel for thousands of physical stores</li>
 						</ul>
-						<li>Advised clients on using organizational factors to realize desired product and architectural outcomes</li>
-						<li>Helped client organizations responsibly adopt modern and evolutionary architectural approaches</li>
-						<li>Drove adoption of modern engineering practices like Continuous Delivery and test-driven development in many different organizational contexts</li>
 						<li>Played a key role in the evolution of ThoughtWorks' own practices, including development of service offerings and recruiting processes</li>
 						<li>Personally mentored more than 50 lead engineers over the past 12 years</li>
 					</ul>
@@ -218,7 +247,7 @@
 					<h4>Curriculum Studio <aside>2011 &gt; 2013</aside></h4>
 					<ul>
 						<li>Founded a software consultancy which doubled in revenue for 3 years consecutively</li>
-						<li>Bootstrapped multiple client tech startups, one of which raised 30m in series C, one of which thrives today</li>
+						<li>Bootstrapped multiple client tech startups, one of which raised a $30M series C, one of which thrives today</li>
 					</ul>
 			</article>
 			<article>
@@ -237,36 +266,26 @@
 			<h2 class="category-heading" style="margin-top: 60px;">Highlighted Skills</h2>
 			<article>
 				<dl>
-					<dd>evolutionary architecture</dd>
+					<dd>software factories</dd>
+					<dd>harness engineering</dd>
+					<dd>AI adoption</dd>
+				</dl>
+				<dl>
+					<dd>platform architecture</dd>
 					<dd>legacy modernization</dd>
 					<dd>data governance</dd>
 				</dl>
 				<dl>
-					<dd>organizational architecture</dd>
-					<dd>platform architecture</dd>
-					<dd>distributed teams</dd>
-				</dl>
-				<dl>
 					<dd>developer experience</dd>
 					<dd>product thinking</dd>
-					<dd>iterative design</dd>
+					<dd>distributed teams</dd>
 					<dd>mentorship</dd>
-					<dd>risk management</dd>
-				</dl>
-				<dl>
-					with technical depth in 
-					<dd>java</dd>
-					<dd>javascript</dd>
-					<dd>cloud</dd>
-					<dd>databases</dd>
-					<dd>continuous delivery</dd>
-					<dd>testing</dd> etc.
 				</dl>
 			</article>
 
 			<h2 class="category-heading">Education</h2>
 			<article>
-				<h5>Bach. Fine Art, New Media, <span>Ryerson University</span></h5>
+				<h5>Bach. Fine Art, New Media, <span>Toronto Metropolitan University</span></h5>
 				<h5>Coursework towards Bach. Computer Science, <span>University of Toronto</span></h5>
 			</article>
 
