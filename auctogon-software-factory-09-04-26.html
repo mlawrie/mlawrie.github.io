@@ -1,0 +1,1301 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style>
+</head>
+<body>
+<title>The Auctogon software factory</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,400&family=JetBrains+Mono:wght@400;500;700&display=swap">
+
+<style>
+  :root {
+    --paper:      #f3f6f4;
+    --surface:    #ffffff;
+    --surface-2:  #eaefeb;
+    --ink:        #0b211c;
+    --ink-soft:   #35473f;
+    --mute:       #6b7d78;
+    --rule:       #d7ded9;
+    --rule-soft:  #e6ebe7;
+    --line-strong:#8fa49c;
+
+    --teal:       #09514d;
+    --teal-wash:  #e3edea;
+
+    --signal:     #1e8f52;
+    --signal-wash:#e0f0e6;
+
+    --amber:      #a4650f;
+    --amber-wash: #f7eddc;
+
+    --rust:       #9e3625;
+    --rust-wash:  #f6e4e0;
+
+    --shadow:     0 1px 2px rgba(11,33,28,.05), 0 8px 24px -12px rgba(11,33,28,.14);
+
+    --f-display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+    --f-body:    "Source Serif 4", Georgia, "Times New Roman", serif;
+    --f-mono:    "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+    --measure: 66ch;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:      #08110f;
+      --surface:    #0f1a17;
+      --surface-2:  #16241f;
+      --ink:        #dfe9e4;
+      --ink-soft:   #b3c3bc;
+      --mute:       #829890;
+      --rule:       #24352f;
+      --rule-soft:  #1b2a25;
+      --line-strong:#547065;
+
+      --teal:       #58b7ac;
+      --teal-wash:  #122b28;
+
+      --signal:     #45d784;
+      --signal-wash:#12281d;
+
+      --amber:      #d9a441;
+      --amber-wash: #2b2317;
+
+      --rust:       #e08170;
+      --rust-wash:  #2c1a16;
+
+      --shadow:     0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper:      #08110f;
+    --surface:    #0f1a17;
+    --surface-2:  #16241f;
+    --ink:        #dfe9e4;
+    --ink-soft:   #b3c3bc;
+    --mute:       #829890;
+    --rule:       #24352f;
+    --rule-soft:  #1b2a25;
+    --line-strong:#547065;
+
+    --teal:       #58b7ac;
+    --teal-wash:  #122b28;
+
+    --signal:     #45d784;
+    --signal-wash:#12281d;
+
+    --amber:      #d9a441;
+    --amber-wash: #2b2317;
+
+    --rust:       #e08170;
+    --rust-wash:  #2c1a16;
+
+    --shadow:     0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--f-body);
+    font-size: 17px;
+    line-height: 1.58;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 1020px; margin: 0 auto; padding: 0 24px 88px; }
+
+  /* ---------- type ---------- */
+
+  h1, h2, h3, .eyebrow, .stat-n, .lane-id, .sev-id, .step-n {
+    font-family: var(--f-display);
+    text-wrap: balance;
+  }
+
+  h1 {
+    font-size: clamp(2.4rem, 6vw, 3.9rem);
+    font-weight: 700;
+    line-height: 1.02;
+    letter-spacing: -0.028em;
+    margin: 0;
+    max-width: 16ch;
+  }
+
+  h2 {
+    font-size: clamp(1.45rem, 3vw, 1.85rem);
+    font-weight: 650;
+    line-height: 1.15;
+    letter-spacing: -0.018em;
+    margin: 0 0 6px;
+  }
+
+  h3 { font-size: 1rem; font-weight: 650; margin: 0 0 6px; }
+
+  p { margin: 0 0 14px; max-width: var(--measure); }
+  p:last-child { margin-bottom: 0; }
+
+  a { color: var(--teal); text-underline-offset: 2px; }
+
+  .eyebrow {
+    font-size: .71rem;
+    font-weight: 600;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--mute);
+    margin: 0 0 13px;
+  }
+
+  code { font-family: var(--f-mono); font-size: .84em; background: var(--surface-2); padding: .1em .38em; border-radius: 3px; color: var(--ink-soft); }
+
+  /* ---------- header ---------- */
+
+  header.masthead { padding: 82px 0 42px; border-bottom: 1px solid var(--rule); }
+
+  .stats { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; padding: 0; list-style: none; }
+
+  .stats li {
+    flex: 1 1 158px;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 14px 16px;
+    box-shadow: var(--shadow);
+  }
+
+  .stat-n {
+    display: block;
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--teal);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .stat-l {
+    display: block;
+    margin-top: 5px;
+    font-family: var(--f-mono);
+    font-size: .67rem;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    color: var(--mute);
+  }
+
+  /* ---------- section ---------- */
+
+  section.block { padding: 54px 0 0; }
+  .section-head { margin-bottom: 22px; }
+
+  /* ---------- do / never split ---------- */
+
+  .split { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
+
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 20px 22px 22px;
+    box-shadow: var(--shadow);
+  }
+
+  .panel.does { border-top: 3px solid var(--teal); }
+  .panel.never { border-top: 3px solid var(--rule); background: var(--surface-2); box-shadow: none; }
+
+  .panel-k {
+    font-family: var(--f-mono);
+    font-size: .68rem;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 13px;
+  }
+
+  .panel.does .panel-k { color: var(--teal); }
+  .panel.never .panel-k { color: var(--mute); }
+
+  .panel ul { margin: 0; padding: 0; list-style: none; }
+
+  .panel li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 9px;
+    font-size: .96rem;
+    line-height: 1.45;
+  }
+
+  .panel li:last-child { margin-bottom: 0; }
+
+  .panel.does li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: .52em;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--teal);
+  }
+
+  .panel.never li { color: var(--mute); }
+
+  .panel.never li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: .68em;
+    width: 10px; height: 1.5px;
+    background: var(--mute);
+  }
+
+  /* ---------- steps strip ---------- */
+
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(168px, 1fr)); gap: 12px; }
+
+  .step {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 15px 16px 16px;
+    box-shadow: var(--shadow);
+  }
+
+  .step-n {
+    font-family: var(--f-mono);
+    font-size: .68rem;
+    font-weight: 700;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+    color: var(--teal);
+    display: block;
+    margin-bottom: 7px;
+  }
+
+  .step p { font-size: .92rem; line-height: 1.42; color: var(--ink-soft); margin: 0; }
+
+  /* ---------- the rail ---------- */
+
+  .rail { display: grid; grid-template-columns: 46px minmax(0, 1fr); column-gap: 22px; }
+
+  .rail-line {
+    grid-column: 1;
+    grid-row: 1 / -1;
+    justify-self: center;
+    width: 2px;
+    background: var(--rule);
+    border-radius: 2px;
+  }
+
+  .station {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 46px minmax(0, 1fr);
+    column-gap: 22px;
+    padding-bottom: 30px;
+  }
+
+  .marker {
+    grid-column: 1;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: var(--teal);
+    color: var(--paper);
+    font-family: var(--f-display);
+    font-weight: 700;
+    font-size: .95rem;
+    font-variant-numeric: tabular-nums;
+    box-shadow: 0 0 0 5px var(--paper);
+    align-self: start;
+  }
+
+  .station-body { grid-column: 2; padding-top: 2px; }
+  .station-body h2 { margin-bottom: 3px; }
+
+  .runs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 6px 10px;
+    margin: 0 0 12px;
+  }
+
+  .skill-chip {
+    font-family: var(--f-mono);
+    font-size: .72rem;
+    font-weight: 500;
+    color: var(--teal);
+    background: var(--teal-wash);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: .12em .45em;
+    white-space: nowrap;
+  }
+
+  .runs-t {
+    font-family: var(--f-mono);
+    font-size: .73rem;
+    letter-spacing: .04em;
+    color: var(--mute);
+    text-transform: uppercase;
+  }
+
+  .station ul { margin: 0 0 14px; padding: 0; list-style: none; max-width: var(--measure); }
+
+  .station ul li { position: relative; padding-left: 17px; margin-bottom: 6px; }
+
+  .station ul li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: .62em;
+    width: 7px; height: 1px;
+    background: var(--teal);
+  }
+
+  /* ---------- gate strip ---------- */
+
+  .gate {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: var(--amber-wash);
+    border-left: 3px solid var(--amber);
+    border-radius: 0 4px 4px 0;
+    padding: 9px 14px;
+    max-width: var(--measure);
+    font-size: .94rem;
+    color: var(--ink-soft);
+  }
+
+  .gate.none { background: var(--surface-2); border-left-color: var(--rule); }
+
+  .gate-tag {
+    font-family: var(--f-mono);
+    font-size: .67rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--amber);
+    white-space: nowrap;
+    padding-top: .24em;
+  }
+
+  .gate.none .gate-tag { color: var(--mute); }
+
+  /* ---------- lanes ---------- */
+
+
+  .lanes { display: grid; grid-template-columns: repeat(auto-fit, minmax(148px, 1fr)); gap: 12px; }
+
+  .lane {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-top: 3px solid var(--teal);
+    border-radius: 4px;
+    padding: 13px 15px 15px;
+    box-shadow: var(--shadow);
+  }
+
+  .lane-id {
+    font-family: var(--f-mono);
+    font-size: .71rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--teal);
+    display: block;
+    margin-bottom: 7px;
+  }
+
+  .lane p { font-size: .91rem; line-height: 1.42; margin: 0; color: var(--ink-soft); }
+
+  .note {
+    margin-top: 12px;
+    background: var(--teal-wash);
+    border: 1px solid var(--teal);
+    border-radius: 4px;
+    padding: 13px 16px;
+  }
+
+  .note p { margin: 0; font-size: .94rem; max-width: 80ch; }
+  .note strong { font-family: var(--f-display); font-weight: 650; }
+
+  /* ---------- highlighted skill: shared ---------- */
+
+  section.highlight {
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    background: var(--surface-2);
+    padding: 26px 26px 28px;
+    margin-top: 54px;
+  }
+
+  section.highlight + section.highlight { margin-top: 18px; }
+  section.highlight .section-head { margin-bottom: 20px; }
+
+  /* connectors inside a highlight read against the recessed ground */
+  section.highlight { border-color: var(--line-strong); --conn: var(--line-strong); }
+
+
+  .skill-title {
+    font-family: var(--f-mono);
+    font-weight: 700;
+    font-size: .82em;
+    color: var(--teal);
+    background: var(--teal-wash);
+    border-radius: 4px;
+    padding: .06em .34em;
+  }
+
+  .outlabel {
+    font-family: var(--f-mono);
+    font-size: .71rem;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    color: var(--mute);
+    margin: 22px 0 9px;
+    max-width: none;
+  }
+
+
+  /* ---------- /adr funnel ---------- */
+
+  .funnel {
+    display: grid;
+    grid-template-columns: 1fr 22px 1fr 22px 1fr;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .fstage {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-top: 3px solid var(--teal);
+    border-radius: 4px;
+    padding: 15px 17px 17px;
+    box-shadow: var(--shadow);
+  }
+
+  .fstage-k {
+    display: block;
+    font-family: var(--f-mono);
+    font-size: .67rem;
+    font-weight: 700;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+    color: var(--mute);
+    margin-bottom: 4px;
+  }
+
+  .fstage p { font-size: .9rem; line-height: 1.42; color: var(--ink-soft); margin: 0; }
+
+  .vflow {
+    display: grid;
+    grid-template-columns: 1fr 22px 1fr 22px 1fr;
+    height: 34px;
+  }
+
+  .vflow-arrow { grid-column: 5; position: relative; }
+
+  .vflow-arrow::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0; bottom: 7px;
+    width: 2px;
+    transform: translateX(-50%);
+    background: var(--conn, var(--rule));
+  }
+
+  .vflow-arrow::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 0; height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 7px solid var(--conn, var(--rule));
+    transform: translateX(-50%);
+  }
+
+  .farrow { position: relative; }
+
+  .farrow::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 2px; right: 7px;
+    height: 2px;
+    transform: translateY(-50%);
+    background: var(--conn, var(--rule));
+  }
+
+  .farrow::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 0; height: 0;
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    border-left: 7px solid var(--conn, var(--rule));
+    transform: translateY(-50%);
+  }
+
+  table.adrout { min-width: 460px; }
+  table.adrout td:first-child { padding-right: 12px; }
+  table.adrout td:nth-child(2) { padding-right: 16px; white-space: nowrap; }
+
+  .adr-n {
+    font-family: var(--f-mono);
+    font-weight: 700;
+    font-size: .86rem;
+    color: var(--teal);
+    font-variant-numeric: tabular-nums;
+  }
+
+  tr.faded {
+    opacity: .34;
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, transparent 92%);
+    mask-image: linear-gradient(to bottom, #000 0%, transparent 92%);
+  }
+
+  tr.faded td { border-bottom: none; }
+
+  /* ---------- /review-pr flow ---------- */
+
+  .pipe {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 15px 17px 16px;
+    box-shadow: var(--shadow);
+  }
+
+  .pipe-k {
+    display: block;
+    font-family: var(--f-mono);
+    font-size: .67rem;
+    font-weight: 700;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+    color: var(--mute);
+    margin-bottom: 11px;
+  }
+
+  .filelist { display: grid; gap: 0; }
+
+  .filerow {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 8px 18px;
+    align-items: baseline;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+
+  .filerow:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .filerow code {
+    background: none;
+    padding: 0;
+    font-size: .8rem;
+    color: var(--ink);
+    overflow-wrap: anywhere;
+  }
+
+  .lanetags {
+    font-family: var(--f-mono);
+    font-size: .68rem;
+    letter-spacing: .04em;
+    color: var(--teal);
+    white-space: nowrap;
+  }
+
+  .fan { display: block; width: 100%; height: auto; margin: 0; }
+  .fan path { fill: none; stroke: var(--conn, var(--rule)); stroke-width: 1.3; }
+  .fan .head { fill: var(--conn, var(--rule)); stroke: none; }
+
+  .lanes { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; }
+
+  .lane {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-top: 3px solid var(--rule);
+    border-radius: 4px;
+    padding: 12px 13px 13px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .lane.hit-p1 { border-top-color: var(--amber); }
+  .lane.hit-p2 { border-top-color: var(--teal); }
+  .lane.hit-p3 { border-top-color: var(--signal); }
+  .lane.clean { background: var(--surface-2); box-shadow: none; }
+
+  .lane-id {
+    font-family: var(--f-mono);
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--teal);
+  }
+
+  .lane.clean .lane-id { color: var(--ink-soft); }
+
+  .lane p { font-size: .86rem; line-height: 1.35; margin: 0; color: var(--ink-soft); flex: 1; }
+
+  .lane-v {
+    font-family: var(--f-mono);
+    font-size: .68rem;
+    font-weight: 700;
+    letter-spacing: .05em;
+    padding: .16em .45em;
+    border-radius: 3px;
+    align-self: flex-start;
+  }
+
+  .v-ok { background: transparent; color: var(--ink-soft); padding-left: 0; }
+  .v-p1 { background: var(--amber-wash);  color: var(--amber); }
+  .v-p2 { background: var(--teal-wash);   color: var(--teal); }
+  .v-p3 { background: var(--signal-wash); color: var(--signal); }
+
+  .findings { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; align-items: start; }
+
+  .route { display: block; width: 100%; height: auto; margin: 0; }
+  .route path { fill: none; stroke: var(--conn, var(--rule)); stroke-width: 1.3; }
+  .route .head { fill: var(--conn, var(--rule)); stroke: none; }
+
+  .finding {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--rule);
+    border-radius: 0 4px 4px 0;
+    padding: 13px 16px 14px;
+    box-shadow: var(--shadow);
+  }
+
+  .finding.f-p1 { border-left-color: var(--amber); }
+  .finding.f-p2 { border-left-color: var(--teal); }
+  .finding.f-p3 { border-left-color: var(--signal); }
+
+  .finding-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 10px;
+    margin-bottom: 8px;
+  }
+
+  .finding-lane {
+    font-family: var(--f-mono);
+    font-size: .68rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--mute);
+  }
+
+  .finding-loc {
+    font-size: .74rem;
+    background: var(--surface-2);
+    color: var(--ink-soft);
+    overflow-wrap: anywhere;
+  }
+
+  .finding p { font-size: .93rem; line-height: 1.48; margin: 0; max-width: 78ch; }
+  .finding strong { font-family: var(--f-display); font-weight: 650; }
+
+  /* ---------- table ---------- */
+
+  .tablewrap { overflow-x: auto; }
+
+  table { border-collapse: collapse; width: 100%; min-width: 500px; font-size: .92rem; }
+
+  th, td { text-align: left; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--rule-soft); vertical-align: top; }
+
+  th {
+    font-family: var(--f-mono);
+    font-size: .67rem;
+    font-weight: 700;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+    color: var(--mute);
+    border-bottom-color: var(--rule);
+  }
+
+  .sev-id {
+    font-family: var(--f-mono);
+    font-weight: 700;
+    font-size: .79rem;
+    letter-spacing: .05em;
+    padding: .15em .5em;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+
+  .sev-p1 { background: var(--amber-wash);  color: var(--amber); }
+  .sev-p2 { background: var(--teal-wash);   color: var(--teal); }
+  .sev-p3 { background: var(--signal-wash); color: var(--signal); }
+
+  /* ---------- ledger ---------- */
+
+  .ledger { display: grid; margin-top: 2px; }
+
+  .ledger-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 16px;
+    align-items: baseline;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+
+  .ledger-row span:first-child { font-size: .96rem; }
+
+  .ledger-stage {
+    font-family: var(--f-mono);
+    font-size: .69rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--mute);
+    white-space: nowrap;
+  }
+
+
+
+  :focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+
+  /* below this width the six lanes can't hold one row, so the routing diagram
+     is replaced by a stacked list with breathing room in its place */
+  @media (max-width: 900px) {
+    .lanes { grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 26px 0; }
+    .fan { display: none; }
+    .findings { grid-template-columns: 1fr; }
+    .route { display: none; }
+  }
+
+  @media (max-width: 720px) {
+    .funnel { grid-template-columns: 1fr; gap: 10px; }
+    .vflow { grid-template-columns: 1fr; }
+    .vflow-arrow { grid-column: 1; }
+    .farrow { height: 18px; }
+    .farrow::before { top: 0; bottom: 7px; left: 50%; right: auto; width: 2px; height: auto; transform: translateX(-50%); }
+    .farrow::after {
+      top: auto; bottom: 0; right: auto; left: 50%;
+      border-top: 7px solid var(--conn, var(--rule));
+      border-bottom: 0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      transform: translateX(-50%);
+    }
+    .filerow { grid-template-columns: 1fr; gap: 3px; }
+  }
+
+  @media (max-width: 560px) {
+    .lanes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    section.highlight { padding: 20px 18px 22px; }
+  }
+
+  @media (max-width: 620px) {
+    body { font-size: 16px; }
+    .rail, .station { grid-template-columns: 32px minmax(0, 1fr); column-gap: 15px; }
+    .marker { width: 28px; height: 28px; font-size: .82rem; box-shadow: 0 0 0 4px var(--paper); }
+    header.masthead { padding-top: 50px; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="eyebrow">Auctogon · How work gets built</p>
+    <h1>The Auctogon software factory</h1>
+    <ul class="stats">
+      <li><span class="stat-n">0</span><span class="stat-l">Lines written by hand</span></li>
+      <li><span class="stat-n">51</span><span class="stat-l">Architecture decisions</span></li>
+      <li><span class="stat-n">78</span><span class="stat-l">Implementation rules</span></li>
+      <li><span class="stat-n">37</span><span class="stat-l">Written procedures</span></li>
+      <li><span class="stat-n">15</span><span class="stat-l">Human decision points</span></li>
+    </ul>
+  </header>
+
+  <!-- ================= DIVISION OF LABOUR ================= -->
+  <section class="block">
+    <div class="section-head">
+      <p class="eyebrow">The division</p>
+      <h2>What a person actually does</h2>
+      <p>Every human act on this list is a <em>decision</em> or a <em>specification</em>. None is production.</p>
+    </div>
+    <div class="split">
+      <div class="panel does">
+        <span class="panel-k">Humans do</span>
+        <ul>
+          <li>Decide what the product should do — and say when it's wrong</li>
+          <li>Define the architecture</li>
+          <li>Approve the implementation plan, before any code exists</li>
+          <li>Rule on findings that need judgement: business rules, tradeoffs, safety</li>
+          <li>Sign off on product and on engineering, then press the button that releases</li>
+        </ul>
+      </div>
+      <div class="panel never">
+        <span class="panel-k">Humans never</span>
+        <ul>
+          <li>Write production code, a test, or a database migration</li>
+          <li>Read a pull request line by line — six specialist reviewer agents do that</li>
+          <li>Do manual QA</li>
+          <li>Chase a build failure, a lint error, or a merge conflict</li>
+          <li>Wave through their own work</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SPEC FIRST ================= -->
+  <section class="block">
+    <div class="section-head">
+      <p class="eyebrow">The premise</p>
+      <h2>Specification first</h2>
+      <p>
+        Agents are fast and literal. Given a vague brief they produce something plausible and
+        subtly wrong. So the specification is written first — at four altitudes, down to the
+        procedure the agent itself follows — and the implementation is derived from it rather
+        than invented alongside it.
+      </p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <span class="step-n">Altitude 1</span>
+        <h3>Architecture</h3>
+        <p>51 decision records. How the system is built and why — signed by a named human before code follows.</p>
+      </div>
+      <div class="step">
+        <span class="step-n">Altitude 2</span>
+        <h3>Rules</h3>
+        <p>78 rules translating those decisions into shapes an agent must produce and shapes that fail review.</p>
+      </div>
+      <div class="step">
+        <span class="step-n">Altitude 3</span>
+        <h3>Behaviour</h3>
+        <p>Numbered acceptance criteria per ticket, written as <em>start state → action → expected result</em> so a machine can run them.</p>
+      </div>
+      <div class="step">
+        <span class="step-n">Altitude 4</span>
+        <h3>Process</h3>
+        <p>37 written procedures — the steps the agent takes to do any of the above, specified as carefully as the code they produce.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ADR PROCESS ================= -->
+  <section class="block">
+    <div class="section-head">
+      <p class="eyebrow">Altitude 1, up close</p>
+      <h2>How an architectural decision gets made</h2>
+      <p>
+        A decision record holds the decision, the reasoning, and <em>the alternatives that lost</em> —
+        so nobody re-proposes them next quarter. This is the layer people guard most closely.
+      </p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <span class="step-n">Step 1</span>
+        <h3>The gap surfaces</h3>
+        <p>Before large work, an agent surveys all 51 records and returns one line per relevant one — typically two to six. Work needing a decision none of them covers is reported as a gap, not assumed.</p>
+      </div>
+      <div class="step">
+        <span class="step-n">Step 2</span>
+        <h3>Drafted &amp; signed</h3>
+        <p>An agent drafts; a named human signs. Nothing proceeds on implied approval, and the signature goes on the record with a date.</p>
+      </div>
+      <div class="step">
+        <span class="step-n">Step 3</span>
+        <h3>Reviewed like code</h3>
+        <p>Records go through the same review gate as source. Weakening a non-negotiable rule without recorded consent is a merge-blocking finding.</p>
+      </div>
+      <div class="step">
+        <span class="step-n">Step 4</span>
+        <h3>Never deleted</h3>
+        <p>Draft → Accepted → Superseded. A superseded record keeps its number and its text, so how the current answer was reached stays readable.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= RULES ================= -->
+  <section class="block">
+    <div class="section-head">
+      <p class="eyebrow">Altitude 2, up close</p>
+      <h2>Implementation isn't free-form either</h2>
+      <p>
+        The agent doesn't choose how to build. 78 written rules say which shapes are correct and
+        which fail review — how data is fetched, where business logic may live, what an error must
+        do, which component a form must use.
+      </p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <span class="step-n">Loading</span>
+        <p>16 rules are always in mind. The other 62 are scoped to file paths and load only when a change touches their area — nobody reads database rules to edit a button.</p>
+      </div>
+      <div class="step">
+        <span class="step-n">Enforcement</span>
+        <p>Each rule is caught at the cheapest place that can catch it: the compiler, then ~40 automated checks, then a review lane, and only then a person.</p>
+      </div>
+      <div class="step">
+        <span class="step-n">Draining</span>
+        <p><em>Touch means migrate.</em> Edit a file still written the old way and you convert it in the same change — so debt shrinks with every piece of work rather than being frozen.</p>
+      </div>
+      <div class="step">
+        <span class="step-n">Conflicts</span>
+        <p><em>Surface, don't average.</em> When two patterns disagree, the agent picks one, says why, and flags the loser — never writes something that satisfies both.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SKILLS ================= -->
+  <section class="block">
+    <div class="section-head">
+      <p class="eyebrow">Altitude 4, up close</p>
+      <h2>Every step is a skill, so every step repeats</h2>
+      <p>
+        An agent asked to "ship this" would improvise, and improvise differently each time. So
+        nothing is asked in the abstract. Each stage of the line is a <strong>skill</strong> — a
+        written procedure with numbered phases, hard rules, guardrails and edge cases — and the
+        agent executes it rather than inventing one.
+      </p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <span class="step-n">Same every time</span>
+        <p>The procedure is the same whoever runs it, whenever, on whatever model. Quality stops depending on how well the request happened to be phrased that morning.</p>
+      </div>
+      <div class="step">
+        <span class="step-n">They compose</span>
+        <p>Skills call skills. Building invokes planning, then shipping; shipping invokes review, then the pull-request loop. A person types one word and a chain of specified steps runs.</p>
+      </div>
+      <div class="step">
+        <span class="step-n">Stops are written in</span>
+        <p>Each skill names its own stop-and-ask points. "Never merge without confirmation" isn't a habit someone remembers — it's a step in the procedure that has to be executed.</p>
+      </div>
+      <div class="step">
+        <span class="step-n">Improved once</span>
+        <p>A lesson learned becomes an edit to the skill, not tribal knowledge. Fixing it once fixes every future run — and the fix is reviewed like any other change.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= THE PIPELINE ================= -->
+  <section class="block">
+    <div class="section-head">
+      <p class="eyebrow">The line</p>
+      <h2>Seven stages, front to back</h2>
+      <p>Each stage names the skill that runs it. Amber marks a point where a person must answer before anything moves.</p>
+    </div>
+
+    <div class="rail">
+      <div class="rail-line" aria-hidden="true"></div>
+
+      <article class="station">
+        <div class="marker">1</div>
+        <div class="station-body">
+          <h2>Scoping a project</h2>
+          <div class="runs"><span class="skill-chip">/add-project</span><span class="skill-chip">/adr</span><span class="runs-t">A body of work is defined before any of it is split up</span></div>
+          <ul>
+            <li>The agent can't proceed until it can restate the problem and the requester agrees with the restatement.</li>
+            <li>A plain-English brief, then a technical analysis written <em>after</em> the architecture survey — so the design is made inside the decisions, not against them.</li>
+            <li>An inventory of everywhere the affected concept already lives. This routinely inverts the scope: "wire up four screens" becomes "delete from three."</li>
+          </ul>
+          <div class="gate">
+            <span class="gate-tag">Human</span>
+            <span>Product lead signs the brief. Tech lead signs the analysis. Hard stops — approval of something else doesn't count.</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="station">
+        <div class="marker">2</div>
+        <div class="station-body">
+          <h2>Filing a feature or a bug</h2>
+          <div class="runs"><span class="skill-chip">/add-feature</span><span class="skill-chip">/add-bug</span><span class="runs-t">One unit of work becomes one ticket</span></div>
+          <ul>
+            <li>The agent infers area, size and priority, then drafts numbered acceptance criteria phrased so a machine can execute them later.</li>
+            <li>Bugs also get a duplicate check and a regression list: <em>what nearby thing should I prove still works?</em></li>
+          </ul>
+          <div class="gate">
+            <span class="gate-tag">Human</span>
+            <span>Features are shown as a draft for approval. Bugs file immediately — a report is cheap, losing one is expensive.</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="station">
+        <div class="marker">3</div>
+        <div class="station-body">
+          <h2>Building it</h2>
+          <div class="runs"><span class="skill-chip">/implement-feature</span><span class="skill-chip">/bugfix</span><span class="skill-chip">/plan</span><span class="runs-t">Explore, plan, then write — never the other way round</span></div>
+          <ul>
+            <li>The agent claims the ticket and follows one of two procedures: one for features, another for bugs. The agent checks that defects are reproducible and facts in the ticket are still true.</li>
+            <li>It writes a plan naming actual files. <strong>The plan is approved before a line of production code exists.</strong></li>
+            <li>Tests come next and they <em>fail</em>. At a minimum, every AC needs a failing test. The implementation's job is to turn them green.</li>
+            <li>Before handing off it walks every criterion against the running application.</li>
+            <li>Any discoveries found during the build are added to the ticket to be reviewed by future steps.</li>
+          </ul>
+          <div class="gate">
+            <span class="gate-tag">Human</span>
+            <span>The plan is approved explicitly — "just do it" doesn't skip it. Also: how to isolate the work, and any criteria discovered while building.</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="station">
+        <div class="marker">4</div>
+        <div class="station-body">
+          <h2>Preflight — review before anyone else sees it</h2>
+          <div class="runs"><span class="skill-chip">/preflight</span><span class="runs-t">Six specialist reviewers read the change in parallel, locally</span></div>
+          <ul>
+            <li>A classifier decides which specialists are relevant — a copy edit doesn't wake the database reviewer.</li>
+            <li>Each runs as its own agent, with its own checklist and no sight of the others' findings.</li>
+            <li>Findings split into <em>mechanical</em> and <em>needs a human</em>. Mechanical ones are fixed on the spot; the rest stop and ask.</li>
+          </ul>
+          <div class="gate">
+            <span class="gate-tag">Human</span>
+            <span>Decide what to do about any discovered issues where the fix is not mechanical: fix now, file for later, or overrule.</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="station">
+        <div class="marker">5</div>
+        <div class="station-body">
+          <h2>Pull request &amp; the review gate</h2>
+          <div class="runs"><span class="skill-chip">/deploy</span><span class="skill-chip">/review-pr</span><span class="runs-t">The same six reviewers run again in the cloud, plus the mechanical checks</span></div>
+          <ul>
+            <li>The request opens with a test plan carrying the ticket's own criteria IDs, so what gets verified traces back to what was asked for.</li>
+            <li>An aggregator tallies the six lanes and blocks the merge on anything serious.</li>
+            <li>Alongside them, ~40 deterministic checks — forbidden patterns, database safety, style. Those checks have their own tests, so a check can't quietly stop checking.</li>
+          </ul>
+          <div class="gate">
+            <span class="gate-tag">Human</span>
+            <span>The merge. An agent never merges without being asked.</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="station">
+        <div class="marker">6</div>
+        <div class="station-body">
+          <h2>QA — automated, deliberately at arm's length</h2>
+          <div class="runs"><span class="skill-chip">/ready-for-qa</span><span class="skill-chip">/notion-qa</span><span class="runs-t">A second agent tests the shipped change on a live environment</span></div>
+          <ul>
+            <li>A queue drains every fifteen minutes: pick the ticket, find the merged work by its ID, drive a real browser through the criteria on the live development site.</li>
+            <li>Each criterion gets <strong>pass</strong>, <strong>fail</strong>, or <strong>couldn't test</strong>, with expected-versus-actual on failures.</li>
+            <li>The testing agent has no access to the ticket system. A separate step records the verdict — so it structurally cannot grade itself.</li>
+          </ul>
+          <div class="gate none">
+            <span class="gate-tag">Human</span>
+            <span>None, by design.</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="station">
+        <div class="marker">7</div>
+        <div class="station-body">
+          <h2>Sign-off &amp; release</h2>
+          <div class="runs"><span class="skill-chip">/product-signoff</span><span class="skill-chip">/tech-impl-summary</span><span class="runs-t">Two people, two questions, then promotion</span></div>
+          <ul>
+            <li><strong>Product:</strong> criterion by criterion — does this actually solve the problem someone reported?</li>
+            <li><strong>Engineering:</strong> what shipped, which patterns it used, whether it honours or violates the written decisions, and an honest critique of what could have been done better.</li>
+            <li>Only when both are checked does the ticket close. Staging and production are separate, manual, one-click promotions.</li>
+          </ul>
+          <div class="gate">
+            <span class="gate-tag">Human</span>
+            <span>Both sign-offs, and both promotions. Nothing reaches customers on an agent's initiative.</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ================= HIGHLIGHTED SKILL 1: /review-pr ================= -->
+  <section class="block highlight">
+    <div class="section-head">
+      <p class="eyebrow">Highlighted skill #1</p>
+      <h2><span class="skill-title">/review-pr</span> — fan the change out to six specialists</h2>
+      <p>
+        One reviewer reading for everything reads for nothing in particular. A classifier routes
+        each changed file to the specialists that can judge it, they run at once with no sight of
+        each other's findings, and every finding is posted as an inline comment on the exact line.
+      </p>
+    </div>
+
+    <div class="pipe">
+      <span class="pipe-k">Step 1 · The change</span>
+      <div class="filelist">
+        <div class="filerow"><code>migrations/…_add_inventory_items.sql</code><span class="lanetags">migrations · correctness</span></div>
+        <div class="filerow"><code>src/app/api/items/route.ts</code><span class="lanetags">security · tenant · correctness</span></div>
+        <div class="filerow"><code>src/lib/items/item-service.ts</code><span class="lanetags">correctness</span></div>
+        <div class="filerow"><code>src/lib/repositories/item-repository.ts</code><span class="lanetags">tenant · correctness · perf</span></div>
+        <div class="filerow"><code>src/components/items/AddItemForm.tsx</code><span class="lanetags">design · correctness</span></div>
+      </div>
+    </div>
+
+    <p class="outlabel">Step 2 · Six lanes run in parallel, each producing its own findings</p>
+
+    <svg class="fan" viewBox="0 0 600 44" aria-hidden="true" focusable="false">
+      <path d="M300,0 C300,15 47.3,19 47.3,38"></path>
+      <path class="head" d="M47.3,44 l-2.6,-4.6 h5.2 z"></path>
+      <path d="M300,0 C300,15 148.4,19 148.4,38"></path>
+      <path class="head" d="M148.4,44 l-2.6,-4.6 h5.2 z"></path>
+      <path d="M300,0 C300,15 249.5,19 249.5,38"></path>
+      <path class="head" d="M249.5,44 l-2.6,-4.6 h5.2 z"></path>
+      <path d="M300,0 C300,15 350.5,19 350.5,38"></path>
+      <path class="head" d="M350.5,44 l-2.6,-4.6 h5.2 z"></path>
+      <path d="M300,0 C300,15 451.6,19 451.6,38"></path>
+      <path class="head" d="M451.6,44 l-2.6,-4.6 h5.2 z"></path>
+      <path d="M300,0 C300,15 552.7,19 552.7,38"></path>
+      <path class="head" d="M552.7,44 l-2.6,-4.6 h5.2 z"></path>
+    </svg>
+
+    <div class="lanes">
+      <div class="lane hit-p2">
+        <span class="lane-id">Security</span>
+        <p>Auth bypass, secrets, information leaks</p>
+      </div>
+      <div class="lane clean">
+        <span class="lane-id">Tenancy</span>
+        <p>Can customer A's data reach customer B?</p>
+        <span class="lane-v v-ok">clean</span>
+      </div>
+      <div class="lane hit-p1">
+        <span class="lane-id">Migrations</span>
+        <p>Reversible, verified, safe on real data</p>
+      </div>
+      <div class="lane clean">
+        <span class="lane-id">Correctness</span>
+        <p>Logic, money maths, tests, layering</p>
+        <span class="lane-v v-ok">clean</span>
+      </div>
+      <div class="lane clean">
+        <span class="lane-id">Performance</span>
+        <p>Query shape, re-renders, payload size</p>
+        <span class="lane-v v-ok">clean</span>
+      </div>
+      <div class="lane hit-p3">
+        <span class="lane-id">Design</span>
+        <p>Primitives, tokens, empty and error states</p>
+      </div>
+    </div>
+
+    <svg class="route" viewBox="0 0 600 44" aria-hidden="true" focusable="false">
+      <path d="M47.3,0 C47.3,17 97.4,23 97.4,38"></path>
+      <path class="head" d="M97.4,44 l-2.6,-4.6 h5.2 z"></path>
+      <path d="M249.5,0 C249.5,17 300,23 300,38"></path>
+      <path class="head" d="M300,44 l-2.6,-4.6 h5.2 z"></path>
+      <path d="M552.7,0 C552.7,17 502.6,23 502.6,38"></path>
+      <path class="head" d="M502.6,44 l-2.6,-4.6 h5.2 z"></path>
+    </svg>
+
+    <div class="findings">
+      <article class="finding f-p2">
+        <div class="finding-head">
+          <span class="sev-id sev-p2">P2</span>
+          <span class="finding-lane">security</span>
+          <code class="finding-loc">api/items/route.ts:41</code>
+        </div>
+        <p>
+          <strong>403 on a cross-tenant id is an enumeration oracle.</strong> A caller who guesses a
+          real id gets <code>403</code>; a made-up id gets <code>404</code>. That difference confirms
+          the record exists. Return <code>404</code> with the identical body for both.
+        </p>
+      </article>
+
+      <article class="finding f-p1">
+        <div class="finding-head">
+          <span class="sev-id sev-p1">P1</span>
+          <span class="finding-lane">migrations</span>
+          <code class="finding-loc">…_add_inventory_items.sql:24</code>
+        </div>
+        <p>
+          <strong>New foreign key ships with no index.</strong>
+          <code>inventory_items.seller_customer_id → customers(id)</code> leaves every delete on
+          <code>customers</code> scanning the child table, and the settlement join with it. Add
+          <code>CREATE INDEX CONCURRENTLY</code> in the same migration.
+        </p>
+      </article>
+
+      <article class="finding f-p3">
+        <div class="finding-head">
+          <span class="sev-id sev-p3">P3</span>
+          <span class="finding-lane">design</span>
+          <code class="finding-loc">AddItemForm.tsx:88</code>
+        </div>
+        <p>
+          <strong>Error state uses a raw Tailwind red.</strong> <code>text-red-500</code> instead of
+          the danger token — off-palette, and below the contrast floor on the dark ground.
+        </p>
+      </article>
+    </div>
+
+  </section>
+
+
+  <!-- ================= HIGHLIGHTED SKILL 2: /adr ================= -->
+  <section class="block highlight">
+    <div class="section-head">
+      <p class="eyebrow">Highlighted skill #2</p>
+      <h2><span class="skill-title">/adr</span> — survey the architecture before planning</h2>
+      <p>
+        Before any sizeable piece of work, the agent reads the architectural record — but reading
+        51 documents in full would drown the session before it starts. The procedure is a funnel:
+        skim everything cheaply, read the few that matter properly, and emit a checklist.
+      </p>
+    </div>
+
+    <div class="funnel">
+      <div class="fstage">
+        <span class="fstage-k">Step 1 · Skim</span>
+        <p>One token-efficient pass over a short summary of every ADR.</p>
+      </div>
+      <div class="farrow" aria-hidden="true"></div>
+      <div class="fstage">
+        <span class="fstage-k">Step 2 · Triage</span>
+        <p>Sorted against the task. When in doubt, keep — a missed constraint costs more than an extra read.</p>
+      </div>
+      <div class="farrow" aria-hidden="true"></div>
+      <div class="fstage">
+        <span class="fstage-k">Step 3 · Read</span>
+        <p>The survivors read in full, with their paired enforcement rules.</p>
+      </div>
+    </div>
+
+    <div class="vflow" aria-hidden="true"><div class="vflow-arrow"></div></div>
+
+    <p class="outlabel">Step 4 · Output — one imperative line per constraint. Pastes straight into the plan.</p>
+
+    <div class="tablewrap">
+      <table class="adrout">
+        <thead>
+          <tr><th scope="col">ADR</th><th scope="col">Title</th><th scope="col">Constraint on this task</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="adr-n">020</td><td>Denormalized&nbsp;Columns</td><td>Denormalized <code>customer_name</code> on the item violates 3NF — join instead</td></tr>
+          <tr><td class="adr-n">023</td><td>Predicate&nbsp;Lifecycle</td><td>Item sold is a nullable timestamp — never a boolean, never a status enum</td></tr>
+          <tr><td class="adr-n">044</td><td>Must&nbsp;Consolidate</td><td>Delete the old modal and its wiring; declare any residue in the PR</td></tr>
+          <tr><td class="adr-n">034</td><td>Field&nbsp;Editability</td><td>Warn the operator before editing a sold item</td></tr>
+          <tr class="faded"><td class="adr-n">027</td><td>Response&nbsp;Contract</td><td>Declare the DTO once; thread it with <code>respond()</code></td></tr>
+        </tbody>
+      </table>
+    </div>  </section>
+
+</div>
+</body>
+</html>
