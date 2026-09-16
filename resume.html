@@ -191,10 +191,15 @@
 		}
 
 		.page-break {
-			page-break-after: always; 
-			page-break-inside: avoid;
+			page-break-after: avoid;
+			page-break-before: always;
 		}
-		
+
+		@media print {
+			.page-break {
+				margin-top: 30px;
+			}
+		}
 
 		@media (max-width: 700px) {
 			body {
@@ -317,11 +322,11 @@
 							<li>Development of a major US airline's consumer mobile app serving ~50 million passengers annually</li>
 							<li>Frontend replatforming of a Fortune 25 retailer's online channel for thousands of physical stores</li>
 						</ul>
-						<li>Played a key role in the evolution of ThoughtWorks' own practices, including development of service offerings and recruiting processes</li>
+						<li class="page-break">Played a key role in the evolution of ThoughtWorks' own practices, including development of service offerings and recruiting processes</li>
 						<li>Personally mentored more than 50 lead engineers over the past 12 years</li>
 					</ul>
 			</article>
-			<article class="page-break">
+			<article>
 					<h3>Partner, Software engineering</h3>
 					<h4>Curriculum Studio <aside>2011 &gt; 2013</aside></h4>
 					<ul>
